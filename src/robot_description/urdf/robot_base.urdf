@@ -1,0 +1,218 @@
+<?xml version="1.0"?>
+<robot name="robot">
+    
+    <link name="ground_link">
+        
+    </link>
+
+    <joint name="ground_joint" type="fixed">
+        <parent link="ground_link"/>
+        <child link="chassis_link"/>
+        <origin xyz="0.0 0.0 0.3"/>
+        
+        
+    </joint>
+
+  <!-- chassis_link -->
+  <link name="chassis_link">
+      <visual>
+      <origin xyz="0 0 0.0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.5 0.3 0.2"/>
+      </geometry>
+      <material name="red">
+        <color rgba="0.1 0.9 0.1 0.5"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <geometry>
+        <box size="0.5 0.3 0.2"/>
+      </geometry>
+      <material name="">
+        <color rgba=" 0.1 0.9 0.1 0.5"/>
+      </material>
+    </collision>
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <mass value="5.0"/>
+      <inertia ixx="0.125" ixy="0.0" ixz="0.0" iyy="0.2083" iyz="0.0" izz="0.2917"/>
+    </inertial>
+    
+  </link>
+    
+  <!-- laser link -->
+  <link name="laser_link">
+      <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.05" radius="0.05"/>
+      </geometry>
+      <material name="black">
+          <color rgba="0.5 0.0 0.0 0.8" /> 
+      </material>
+    </visual>
+  </link>
+    
+  <!-- laser joint -->
+    <joint name="laser_joint" type="fixed">
+        <parent link="chassis_link" />
+        <child link="laser_link" />
+        <origin xyz="0 0 0.125" />
+    </joint>
+
+    <!-- right_motor_link -->
+    <link name="right_motor_link">
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="0.15 0.1 0.1"/>
+            </geometry>
+            <material name="">
+                <color rgba="0.0 0.0 1.0 1.0"/>
+                <texture filename=""/>
+            </material>
+        </visual>
+        <collision>
+          <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+          <geometry>
+            <box size="0.15 0.1 0.1"/>
+          </geometry>
+          <material name="">
+            <color rgba="0.0 0.0 1.0 1.0"/>
+          </material>
+        </collision>
+        <inertial>
+          <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+          <mass value="1.0"/>
+          <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001125" iyz="0.0" izz="0.001125"/>
+        </inertial>
+    </link>
+
+    <joint name="right_motor_joint" type="fixed">
+        <parent link="chassis_link"/>
+        <child link="right_motor_link"/>
+        <origin xyz="0.195 0.0 -0.15"/>
+    </joint>
+
+    <!-- left_motor_link -->
+    <link name="left_motor_link">
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="0.15 0.1 0.1"/>
+            </geometry>
+            <material name="">
+                <color rgba="0.0 0.0 1.0 1.0"/>
+                <texture filename=""/>
+            </material>
+        </visual>
+        <collision>
+          <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+          <geometry>
+            <box size="0.15 0.1 0.1"/>
+          </geometry>
+          <material name="">
+            <color rgba="0.0 0.0 1.0 1.0"/>
+          </material>
+        </collision>
+        <inertial>
+          <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+          <mass value="1.0"/>
+          <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001125" iyz="0.0" izz="0.001125"/>
+        </inertial>
+    </link>
+
+    <joint name="left_motor_joint" type="fixed">
+        <parent link="chassis_link"/>
+        <child link="left_motor_link"/>
+        <origin xyz="-0.195 0.0 -0.15"/>
+    </joint>
+
+      <link name="imu_link">
+      <visual>
+      <origin xyz="0 0 0.0" rpy="0 0 0"/>
+      <geometry>
+            <box size="0.05 0.05 0.02"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- imu joint -->
+  <joint name="imu_joint" type="fixed">
+      <parent link="chassis_link" />
+      <child link="imu_link" />
+      <origin xyz="0 0 0.02" />
+  </joint>
+
+    <link name="right_wheel_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 1.57079 0"/>
+        <geometry>
+          <cylinder length="0.04" radius="0.15"/>
+        </geometry>
+          <material name="">
+            <color rgba="1.0 0.8 0.8 1.0" /> 
+          </material>
+      </visual>
+      <collision>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 1.57079 0.0"/>
+        <geometry>
+          <cylinder length="0.04" radius="0.15"/>
+        </geometry>
+          <material name="">
+            <color rgba="1.0 0.8 0.8 1.0" /> 
+          </material>
+      </collision>
+      <inertial>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 1.57079 0.0"/>
+        <mass value="0.5"/>
+        <inertia ixx="0.00235" ixy="0.0" ixz="0.0" iyy="0.00235" iyz="0.0" izz="0.00028125"/>
+      </inertial>
+      
+      
+  </link>
+    
+  <joint name="right_wheel_joint" type="continuous">
+      <parent link="right_motor_link" />
+      <child link="right_wheel_link" />
+      <origin xyz="0.095 0.0 0.0" />
+      <axis xyz="1 0 0" />
+  </joint>
+
+  <link name="left_wheel_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 -1.57079 0"/>
+        <geometry>
+          <cylinder length="0.04" radius="0.15"/>
+        </geometry>
+          <material name="">
+            <color rgba="1.0 0.8 0.8 1.0" /> 
+          </material>
+      </visual>
+      <collision>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 -1.57079 0.0"/>
+        <geometry>
+          <cylinder length="0.04" radius="0.15"/>
+        </geometry>
+          <material name="">
+            <color rgba="1.0 0.8 0.8 1.0" /> 
+          </material>
+      </collision>
+      <inertial>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 -1.57079 0.0"/>
+        <mass value="0.5"/>
+        <inertia ixx="0.00235" ixy="0.0" ixz="0.0" iyy="0.00235" iyz="0.0" izz="0.00028125"/>
+      </inertial>
+  </link>
+    
+  <joint name="left_wheel_joint" type="continuous">
+      <parent link="left_motor_link" />
+      <child link="left_wheel_link" />
+      <origin xyz="-0.095 0.0 0.0" />
+      <axis xyz="1 0 0" />
+  </joint>
+
+
+
+</robot>
